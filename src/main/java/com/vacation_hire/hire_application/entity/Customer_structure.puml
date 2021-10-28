@@ -1,0 +1,269 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.vacation_hire.hire_application.entity.Customer"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_2051782422 { 
+   	label=vacation_hire
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_353300573 { 
+   	label=hire_application
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Customer70935527[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Customer</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   phoneNumber: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addCustomerName(name: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addCustomerPhoneNumber(phoneNumber: String): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Order70935527[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Order&lt;T&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   customer: Customer [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   date: Date [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ receiveHiredObject(): T</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setRentingDate(date: String): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderRegister70935527[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)OrderRegister</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   orders: ArrayList&lt;Order&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ receiveOrderByOrderNumber(orderNumber: String): Order</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showAllOrders()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showListOfActiveOrders(): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Vehicle70935527[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Vehicle</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   orderStatus: OrderStatus [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   vehicleDamaged: Boolean [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ updateDamagingStatus(answer: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateVehicleGasolineLevel(answer: String): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CarTypes967542002[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(E)CarTypes</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   MINIVANS: CarTypes [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   SEDANS: CarTypes [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   TRUCKS: CarTypes [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   value: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ valueOf(name: String): CarTypes</TD></TR>
+<TR><TD ALIGN="LEFT" >+ values(): CarTypes[]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#DCFBD5"
+];
+
+   Car241457390[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Car</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   carType: CarTypes [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   fuelFilledUp: Boolean [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ setType(carType: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateVehicleGasolineLevel(answer: String): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+VehicleOrder70935527[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)VehicleOrder</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   vehicle: Vehicle [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ receiveHiredObject(): Vehicle</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showOrder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+OrderStatus967542002[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(E)OrderStatus</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   NOT_RENTED: OrderStatus [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   RENTED: OrderStatus [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   RETURNED: OrderStatus [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ valueOf(name: String): OrderStatus</TD></TR>
+<TR><TD ALIGN="LEFT" >+ values(): OrderStatus[]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#DCFBD5"
+];
+
+Orderable942569860[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(I)Orderable</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ setRentingDate(input: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ showOrder()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+Rentable942569860[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(I)Rentable</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ getType(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setOrderStatus(orderStatus: OrderStatus)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setType(vehicleType: String): Boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateDamagingStatus(input: String): Boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#F1E5FD"
+];
+
+} 
+} 
+
+'edges    
+Order70935527 -> Customer70935527[label="customer"];
+Order70935527 -> VehicleOrder70935527[arrowhead=none, arrowtail=empty, dir=both];
+OrderRegister70935527 -> Order70935527[arrowhead=none, arrowtail=empty, dir=both];
+VehicleOrder70935527 -> Vehicle70935527[label="vehicle"];
+Vehicle70935527 -> Car241457390[arrowhead=none, arrowtail=empty, dir=both];
+Car241457390 -> CarTypes967542002[label="carType"];
+Vehicle70935527 -> OrderStatus967542002[label="orderStatus"];
+Orderable942569860 -> Order70935527[arrowhead=none, arrowtail=empty, dir=both];
+Rentable942569860 -> Vehicle70935527[arrowhead=none, arrowtail=empty, dir=both];
+OrderRegister70935527 -> Order70935527[label="orders"];
+    
+}
+@enduml

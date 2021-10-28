@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: com.vacation_hire.hire_application.Application
+
